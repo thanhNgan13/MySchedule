@@ -1,4 +1,4 @@
-package test;
+package GUI;
 
 
 import java.awt.Color;
@@ -11,8 +11,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.math.BigInteger;
 import java.nio.file.AtomicMoveNotSupportedException;
+import java.sql.SQLException;
 import java.util.Calendar;
 
 import javax.swing.Timer;
@@ -23,7 +27,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Calendar_v1 extends JFrame implements ActionListener, KeyListener {
+public class Calendar_v1 extends JFrame implements ActionListener, KeyListener{
 	Container cn;
 	JButton bt[][] = new JButton[7][7];
 	JTextField tf;
@@ -37,8 +41,9 @@ public class Calendar_v1 extends JFrame implements ActionListener, KeyListener {
 	String w[] = { "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa" };
 	String t[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
 			"November", "December" };
+    Event ev = new Event(leng2(DAY + "" + "-" + leng2(MONTH + 1 + "") + "-" + YEAR));
 
-	public Calendar_v1() {
+	public Calendar_v1() throws SQLException{
 		super("Calendar");
 		cn = init();
 		timer.start();
@@ -157,30 +162,7 @@ public class Calendar_v1 extends JFrame implements ActionListener, KeyListener {
 		this.setLocation((int) p.getX() - 245, (int) p.getY());
 
 		update(preMonth + 1, preYear);
-// 		timer = new Timer(200, new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				Calendar c = Calendar.getInstance();
-//				YEAR = c.get(Calendar.YEAR);
-//			    MONTH = c.get(Calendar.MONTH);
-//			    DAY = c.get(Calendar.DAY_OF_MONTH);
-//				int m = ch.getSelectedIndex();
-//				String str = tf.getText();
-//				while (str.length() > 1 && str.charAt(0) == ' ')
-//					str = str.substring(1, str.length() - 1);
-//				while (str.length() > 1 && str.charAt(str.length() - 1) == ' ')
-//					str = str.substring(0, str.length() - 2);
-//				if (str.matches("[0-9]+")) {
-//					if ((m != preMonth || preYear.compareTo(new BigInteger(str)) != 0)) {
-//						ch.setSelectedIndex(m);
-//						update(m + 1, new BigInteger(str));
-//						preMonth = m;
-//						preYear = new BigInteger(str);
-//					}
-//				} else
-//					tf.setText("");
-//			} 
-//		});
-
+		
 		return cn;
 	}
 
@@ -297,7 +279,7 @@ public class Calendar_v1 extends JFrame implements ActionListener, KeyListener {
 		return 0;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException{
 		new Calendar_v1();
 	}
 
@@ -314,7 +296,7 @@ public class Calendar_v1 extends JFrame implements ActionListener, KeyListener {
 					bt[I][J].setBorder(null);
 
 			bt[i][j].setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.red));
-//			ev.updateEvent(DateTime[i][j]);
+			ev.updateEvent(DateTime[i][j]);
 
 		}
 	}
