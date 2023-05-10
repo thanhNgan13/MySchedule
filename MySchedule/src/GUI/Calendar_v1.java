@@ -2,6 +2,8 @@ package GUI;
 
 
 import java.awt.Color;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridBagLayout;
@@ -16,6 +18,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.math.BigInteger;
 import java.nio.file.AtomicMoveNotSupportedException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Calendar;
 
@@ -24,6 +27,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -31,7 +35,6 @@ public class Calendar_v1 extends JFrame implements ActionListener, KeyListener{
 	Container cn;
 	JButton bt[][] = new JButton[7][7];
 	JTextField tf;
-	Timer timer;
 	Calendar c = Calendar.getInstance();
 	
 	int YEAR = c.get(Calendar.YEAR);
@@ -41,12 +44,11 @@ public class Calendar_v1 extends JFrame implements ActionListener, KeyListener{
 	String w[] = { "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa" };
 	String t[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
 			"November", "December" };
-    Event ev = new Event(leng2(DAY + "" + "-" + leng2(MONTH + 1 + "") + "-" + YEAR));
+    Event_v1 ev = new Event_v1(leng2(DAY + "-" + leng2(MONTH + 1 + "") + "-" + YEAR));
 
 	public Calendar_v1() throws SQLException{
 		super("Calendar");
 		cn = init();
-		timer.start();
 	}
 
 	String DateTime[][] = new String[7][7];
@@ -296,7 +298,10 @@ public class Calendar_v1 extends JFrame implements ActionListener, KeyListener{
 					bt[I][J].setBorder(null);
 
 			bt[i][j].setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.red));
+			JOptionPane.showMessageDialog(null, DateTime[i][j]);
+			
 			ev.updateEvent(DateTime[i][j]);
+			
 
 		}
 	}
