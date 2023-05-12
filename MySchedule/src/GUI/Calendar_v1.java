@@ -298,6 +298,7 @@ public class Calendar_v1 extends JFrame implements ActionListener, KeyListener{
 					bt[I][J].setBorder(null);
 
 			bt[i][j].setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.red));			
+			ev.setVisible(true);
 			ev.updateEvent(DateTime[i][j]);
 			
 

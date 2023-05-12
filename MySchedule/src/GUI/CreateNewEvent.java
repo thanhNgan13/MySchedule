@@ -161,7 +161,7 @@ public class CreateNewEvent extends JFrame {
 	}
 
 	public CreateNewEvent() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		this.setLocationRelativeTo(null);
 		contentPane = new JPanel();
@@ -249,7 +249,7 @@ public class CreateNewEvent extends JFrame {
 		btnBack = new JButton("Quay lại");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				dispose();
 			}
 		});
 		btnBack.setFont(new Font("Palatino Linotype", Font.BOLD, 15));
