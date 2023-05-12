@@ -27,6 +27,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 import javax.swing.text.TabableView;
 
+
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.FlowLayout;
@@ -234,19 +235,8 @@ public class Event_v1 extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		String str = JOptionPane.showInputDialog("More events for " + time);
-		if (str.length() > 0) {
-			addEvent(this.time, str);
-			try {
-				writeEvent();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			updateEvent(this.time);
-//			setVisible(false);
-		}
+		CreateNewEvent add = new CreateNewEvent();
+		add.setVisible(true);
 	}
 
 	
