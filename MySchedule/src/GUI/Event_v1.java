@@ -155,10 +155,7 @@ public class Event_v1 extends JFrame implements ActionListener {
 	public void readEvent() {
 		try (Connection conn = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD)) {
 			// Khai báo định dạng ngày tháng đầu vào
-			DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
-			// Chuỗi đầu vào cần chuyển đổi định dạng
-			
+			DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");			
 
 			// Chuyển đổi định dạng
 			LocalDate date = LocalDate.parse(time, inputFormatter);
@@ -178,6 +175,8 @@ public class Event_v1 extends JFrame implements ActionListener {
 			// Nếu không có bản ghi nào được tìm thấy
 			if (!rs.isBeforeFirst()) {
 				JOptionPane.showMessageDialog(this, "Ngày này chưa có cuộc hẹn nào cả!");
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.setRowCount(0);
 				return;
 			}
 			// Lấy thông tin về các cột trong ResultSet

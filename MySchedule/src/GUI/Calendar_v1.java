@@ -297,9 +297,7 @@ public class Calendar_v1 extends JFrame implements ActionListener, KeyListener{
 				for (int J = 0; J < 7; J++)
 					bt[I][J].setBorder(null);
 
-			bt[i][j].setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.red));
-			JOptionPane.showMessageDialog(null, DateTime[i][j]);
-			
+			bt[i][j].setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.red));			
 			ev.updateEvent(DateTime[i][j]);
 			
 
